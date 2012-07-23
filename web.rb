@@ -8,13 +8,14 @@ https://developer.mozilla.org/En/Server-Side_Access_Control
 
 class AjaxTestbedSimple < Sinatra::Base
 
-  HELP = [ 'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax' ] # Should respond to #each.
-  RESPONSE_AJAX = [ '{ "message": "hello" }' ]
+  
   RESPONSE_STATUS_OK = 200
   RESPONSE_HEADERS = {
       'Access-Control-Allow-Origin' => '*',
 
        }
+  RESPONSE_AJAX = [ '{ "message": "hello" }', "\n" ]
+  RESPONSE_HELP = [ 'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax', "\n" ] # Should respond to #each.
 
 #  s = ENV['SESSION_SECRET']
 #  raise if s.nil? || ''==s
