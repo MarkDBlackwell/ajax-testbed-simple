@@ -23,15 +23,15 @@ class AjaxTestbedSimple < Sinatra::Base
   end
 
   before do
-    @help = :'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax'
-    @ajax = :''
+    @help = 'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax'
+    @ajax = ''
   end
 
-  post('/ajax.?:format?') { erb @ajax }
-  get( '/ajax.?:format?') { erb @ajax }
+  post('/ajax.?:format?') { @ajax }
+  get( '/ajax.?:format?') { @ajax }
 
-  post('/.?:format?') { erb @help }
-  get( '/.?:format?') { erb @help }
+  post('/.?:format?') { @help }
+  get( '/.?:format?') { @help }
 
 #-------------
   protected
