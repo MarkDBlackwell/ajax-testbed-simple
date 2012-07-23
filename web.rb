@@ -3,18 +3,21 @@ require 'sinatra/reloader'
 
 class AjaxTestbedSimple < Sinatra::Base
 
+  HELP = [ 'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax' ] # Should respond to #each.
+  RESPONSE_AJAX = [ '{ "message": "hello" }' ]
+  RESPONSE_STATUS_OK = 200
+  RESPONSE_HEADERS = {
+      'Access-Control-Allow-Origin' => '*',
+
+       }
+
 #  s = ENV['SESSION_SECRET']
 #  raise if s.nil? || ''==s
 #  set :session_secret, s
 
   configure do
-    enable :dump_errors
-    enable :lock
-    enable :logging
-    enable :raise_errors
-    enable :sessions
-
-    disable :threaded
+    enable :dump_errors, :lock, :logging, :method_override, :show_exceptions
+    disable :protection, :raise_errors, :sessions, :static, :threaded
   end
 
   configure :development do
@@ -23,15 +26,14 @@ class AjaxTestbedSimple < Sinatra::Base
   end
 
   before do
-    @help = 'Send XmlHttpRequest (Ajax) requests (GET or POST) to /ajax'
-    @ajax = ''
+    cache_control :private, :must_revalidate, :max_age => 0
   end
 
-  post('/ajax.?:format?') { @ajax }
-  get( '/ajax.?:format?') { @ajax }
+  post('/ajax.?:format?') { [ RESPONSE_STATUS_OK, RESPONSE_HEADERS, RESPONSE_AJAX ] }
+  get( '/ajax.?:format?') { [ RESPONSE_STATUS_OK, RESPONSE_HEADERS, RESPONSE_AJAX ] }
 
-  post('/.?:format?') { @help }
-  get( '/.?:format?') { @help }
+  post('/.?:format?'    ) { [ RESPONSE_STATUS_OK, RESPONSE_HEADERS, RESPONSE_HELP ] }
+  get( '/.?:format?'    ) { [ RESPONSE_STATUS_OK, RESPONSE_HEADERS, RESPONSE_HELP ] }
 
 #-------------
   protected
