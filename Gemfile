@@ -10,6 +10,6 @@ gem 'rack'
 
 gem 'sinatra'
 
-# gem 'sinatra-contrib'
+gem 'sinatra-contrib'
 
 gem 'thin'
