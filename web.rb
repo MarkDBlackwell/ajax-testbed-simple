@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 =begin
 Ref:
 https://developer.mozilla.org/En/Server-Side_Access_Control
+http://ajaxpatterns.org/XMLHttpRequest_Call
 =end 
 
 class AjaxTestbedSimple < Sinatra::Base
