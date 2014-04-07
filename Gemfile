@@ -1,8 +1,8 @@
-source :rubygems
+source 'https://rubygems.org'
 
 ruby '1.9.2'
 
-gem 'bundler', '~>1.2.0.rc'
+gem 'bundler', '=1.5.2'
 
 gem 'eventmachine', '~>1.0.0.rc.4'
 
